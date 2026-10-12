@@ -1,0 +1,18 @@
+# dsh-reasoning-effort — bundle patch.
+#
+# ONE ROW, and it is an `insert` (not an id override) because nothing shipped
+# owns this seat: the feature is purely additive. The Models settings section
+# already publishes the extension point as `settings.models.provider-card`,
+# keyed by the settings namespace of the adapter family, so this plugin does not
+# edit that page — it registers into it.
+#
+# `settingsNs` must match the Loader entry id of the adapter that owns the
+# routes. @deepseek-ai/dsh-base mounts @deepseek-ai/dsh-llm-pi-ai as `llm-pi-ai`,
+# so that single row covers every pi-ai card: DeepSeek, OpenAI, and every
+# hand-declared relay. Change it only if a profile renames that adapter row.
+
+- insert:
+    - id: dsh-reasoning-effort
+      name: 'dsh-reasoning-effort'
+      config:
+        settingsNs: llm-pi-ai

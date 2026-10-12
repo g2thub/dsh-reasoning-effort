@@ -1,0 +1,6 @@
+# Normalize line endings for the shell script and keep diffs text-only.
+* text=auto eol=lf
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.gif binary

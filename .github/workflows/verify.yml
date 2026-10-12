@@ -1,0 +1,26 @@
+name: verify
+
+# `verify.mjs` re-implements the checks dsh-client-modules and the Cordis Loader
+# perform at activation, plus the distribution's own rule that a browser bundle
+# may require only a platform seed word. It needs no dsh installation — the one
+# check that does (adapter resolution) skips itself with a note — so it runs
+# fine on a bare checkout. That matters because the registration id in
+# `client.js` must equal the package name, and nothing else would catch a drift.
+
+# Every branch, not just main: pinning a branch name means a repository whose
+# default branch is named otherwise silently never runs this.
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify bundle and client-plugin contracts
+        run: node verify.mjs

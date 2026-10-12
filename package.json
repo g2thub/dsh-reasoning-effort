@@ -1,0 +1,54 @@
+{
+  "name": "dsh-reasoning-effort",
+  "version": "1.0.0",
+  "description": "Per-model reasoning-effort editor for the DeepSeek Harness Web GUI's Models settings page — the one model field that page deliberately leaves to YAML.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "deepseek",
+    "cordis",
+    "cordis-plugin",
+    "client-plugin",
+    "reasoning-effort",
+    "thinking",
+    "llm"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "verify.mjs",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.4"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "~3.18.4"
+  },
+  "scripts": {
+    "verify": "node verify.mjs",
+    "verify:with-profile": "node verify.mjs --dsh-root \"$DSH_ROOT\""
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}
